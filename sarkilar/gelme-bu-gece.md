@@ -157,8 +157,12 @@ Sen de
    - Kapı yerinde / Ben değilim
 7. Tekrar: kanca bilinçli; verse’te aynı cümle yok.
 
+## Suno
+
+Kopyala-yapıştır Custom Mode: [gelme-bu-gece-suno.md](gelme-bu-gece-suno.md)
+
 ## Style (KA-1 Aşama A)
 
 ```
-Emotional cinematic boom bap, 90 BPM, melancholic piano, distant atmospheric violin, dusty organic drums, intimate male rap vocal. Begin lonely and spacious, grow into a wide emotional chorus, then return to controlled energy. Dark, nocturnal, melancholic, professional arrangement, warm low end.
+Emotional cinematic boom bap, 90 BPM. Melancholic piano as the main melodic identity, distant atmospheric violin as emotional support, dusty organic 90s boom bap drums with restrained swing and a head-nod pocket, warm deep bass. Intimate male rap vocal, close to the microphone in the verses, wider and more emotional in the chorus. Begin lonely and spacious: sparse piano and distant violin, no drums yet. Verses stay intimate with dusty kick, snappy snare, swung hats. Chorus expands: wider drums, swelling strings, emotional peak. Verse 2 returns to a controlled pocket. Final chorus is the biggest, widest section. Outro slowly strips the instruments away. Dark, nocturnal, melancholic, professional mix, warm low end. Strictly organic boom bap drum programming, dusty samples, restrained swing.
 ```

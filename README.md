@@ -18,4 +18,6 @@ Söz bir süs değil, sahne ve kancadır. Suno bir piyango değil, aşamalı pro
 
 Örnek parça: [Gelme Bu Gece](sarkilar/gelme-bu-gece.md)
 
+Suno Custom Mode: [Gelme Bu Gece — Style + Lyrics](sarkilar/gelme-bu-gece-suno.md)
+
 Okuma sürümü: [soz.html](soz.html)

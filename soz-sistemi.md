@@ -166,7 +166,7 @@ Sahneyi kamerayla çek. Işık, oda, saat, nesne. Dinleyici o odada dursun.
 
 ## KA-1’e aktarım
 
-SÖZ bitince söz, Suno Lyrics alanına performans notlarıyla girer. Style alanına söz yazılmaz.
+SÖZ bitince söz, Suno Lyrics alanına performans notlarıyla girer. Style alanına söz yazılmaz. Bölüm etiketleri İngilizce olsun: `[Chorus]`, `[Bridge]`, `[Final Chorus]`. `[Nakarat]` Suno’da bölüm olarak zayıf kalır.
 
 ```
 [Intro]

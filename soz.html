@@ -400,7 +400,8 @@
         </div>
         <div>
           <b>Örnek</b>
-          <a href="#sarki">Gelme Bu Gece</a>
+          <a href="#sarki">Gelme Bu Gece</a> ·
+          <a href="#suno">Suno prompt</a>
         </div>
       </nav>
     </div>
@@ -545,7 +546,7 @@ Geliyor kapıma</div>
       <div class="wrap">
         <p class="section-kicker">KA-1 aktarım</p>
         <h2>Söz bitti, Style’a dokunma</h2>
-        <p>SÖZ bitince söz, Suno Lyrics alanına performans notlarıyla girer. Style alanına söz yazılmaz. KA-1’de birinci kilit hâlâ nakarattır. Söz kancası zayıfsa demo çoğaltmak kurtarmaz.</p>
+        <p>SÖZ bitince söz, Suno Lyrics alanına performans notlarıyla girer. Style alanına söz yazılmaz. Bölüm etiketleri İngilizce olsun: <strong>[Chorus]</strong>, <strong>[Bridge]</strong>, <strong>[Final Chorus]</strong>. KA-1’de birinci kilit hâlâ nakarattır.</p>
         <div class="copy-row">
           <p class="label strong">Lyrics iskeleti</p>
           <button class="copy" data-copy="iskelet">Kopyala</button>
@@ -619,7 +620,7 @@ Kapı yerinde
 Ben değilim
 
 [Verse 1]
-[Male rap vocal, intimate, close to the microphone]
+[Male rap vocal, intimate, close to the microphone, dusty boom bap pocket]
 
 Lambayı kıstım, gölge tırmanıyor duvara
 Bardakta soğuk çay, dün gece duruyor hâlâ
@@ -636,8 +637,8 @@ Göz yumunca perde aralanıyor, duruyor ötesi
 Sormuyorum kim olduğunu, isim tozda yazılı
 Açarsam girecek sandım... meğer ben dışarıdayım
 
-[Nakarat]
-[Wider vocal, drums and strings open]
+[Chorus]
+[Wider vocal, bigger dusty drums, swelling strings]
 
 Gelme bu gece
 Kapı kilitli, anahtar bende
@@ -651,7 +652,7 @@ Açarsam girecek
 Kapatamam bir daha
 
 [Verse 2]
-[Still close-mic, slightly fuller pocket]
+[Return to close-mic vocal, slightly fuller boom bap pocket]
 
 İçeri baksam mutfak ışığı senin saatinde yanar
 Fincanın yeri aynı, koltukta o çukur hâlâ durur
@@ -668,8 +669,8 @@ Güneş perdeyi yaksa gölgen durur evin içinde
 Bu yüzden “gelme” diyorum, kendime, bu eşiğe
 Açarsam giremem; girersem çıkamam bir daha gece
 
-[Nakarat]
-[Same hook, heavier]
+[Chorus]
+[Same hook, heavier drums and strings]
 
 Gelme bu gece
 Kapı kilitli, anahtar bende
@@ -682,8 +683,8 @@ Gelme bu gece
 Açarsam girecek
 Kapatamam bir daha
 
-[Köprü]
-[Drums drop, piano and violin]
+[Bridge]
+[Drums drop, piano and violin only, intimate vocal]
 
 Belki kapı hiç dışarıda değildi
 Belki tokmak benim parmağımdı
@@ -693,8 +694,8 @@ Ben çıktım
 Gelme bu gece
 Bu gece yeter
 
-[Final Nakarat]
-[Biggest, widest section]
+[Final Chorus]
+[Biggest and widest section, full drums and strings]
 
 Gelme bu gece
 Kapı kilitli, anahtar bende
@@ -723,8 +724,72 @@ Sen de</pre>
           <p class="label strong">Style</p>
           <button class="copy" data-copy="style">Kopyala</button>
         </div>
-        <pre id="style">Emotional cinematic boom bap, 90 BPM, melancholic piano, distant atmospheric violin, dusty organic drums, intimate male rap vocal. Begin lonely and spacious, grow into a wide emotional chorus, then return to controlled energy. Dark, nocturnal, melancholic, professional arrangement, warm low end.</pre>
-        <p>Notlar ve kalite kilidi: <a href="sarkilar/gelme-bu-gece.md">sarkilar/gelme-bu-gece.md</a></p>
+        <pre id="style">Emotional cinematic boom bap, 90 BPM. Melancholic piano as the main melodic identity, distant atmospheric violin as emotional support, dusty organic 90s boom bap drums with restrained swing and a head-nod pocket, warm deep bass. Intimate male rap vocal, close to the microphone in the verses, wider and more emotional in the chorus. Begin lonely and spacious: sparse piano and distant violin, no drums yet. Verses stay intimate with dusty kick, snappy snare, swung hats. Chorus expands: wider drums, swelling strings, emotional peak. Verse 2 returns to a controlled pocket. Final chorus is the biggest, widest section. Outro slowly strips the instruments away. Dark, nocturnal, melancholic, professional mix, warm low end. Strictly organic boom bap drum programming, dusty samples, restrained swing.</pre>
+        <p>Tam Custom Mode (Title, slider, beat kilidi, Reuse): <a href="sarkilar/gelme-bu-gece-suno.md">gelme-bu-gece-suno.md</a></p>
+      </div>
+    </section>
+
+    <section id="suno">
+      <div class="wrap">
+        <p class="section-kicker">Suno Custom Mode · 90 BPM</p>
+        <h2>Duygusal boom bap prompt</h2>
+        <p>Style’a söz yazılmaz. 2–4 unsur: piyano, uzaktan keman, dusty boom bap davul, sıcak bas. Nakarat İngilizce etiket: <strong>[Chorus]</strong>.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Slider</h3>
+            <p>Weirdness: düşük–orta (20–35)</p>
+            <p>Style Influence: yüksek (70–85)</p>
+            <p>Kötü sonuçta önce slider, sonra tek değişken.</p>
+          </article>
+          <article class="card">
+            <h3>Groove</h3>
+            <p>Dusty kick, snappy snare, swung hat. Head-nod 90. Modern trap hi-hat yok; organik 90s pocket var.</p>
+          </article>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Title</p>
+          <button class="copy" data-copy="suno-title">Kopyala</button>
+        </div>
+        <pre id="suno-title">Gelme Bu Gece</pre>
+        <div class="copy-row">
+          <p class="label strong">Kısa Style (yedek)</p>
+          <button class="copy" data-copy="style-short">Kopyala</button>
+        </div>
+        <pre id="style-short">Emotional cinematic boom bap, 90 BPM, melancholic piano, distant violin, dusty organic 90s drums with restrained swing, warm bass, intimate male rap vocal. Lonely intro, spacious verses, wide emotional chorus, sparse outro. Dark, nocturnal, professional mix, warm low end.</pre>
+        <div class="copy-row">
+          <p class="label strong">Beat kilidi (enstrümantal Lyrics)</p>
+          <button class="copy" data-copy="beat">Kopyala</button>
+        </div>
+        <pre id="beat">[Intro]
+[Sparse melancholic piano, distant violin, no drums]
+
+[Verse]
+[Dusty 90 BPM boom bap enters: dusty kick, snappy snare, swung hats, warm bass, piano continues, instrumental]
+
+[Chorus]
+[Wider drums, swelling violin, emotional peak, still instrumental]
+
+[Verse]
+[Return to restrained head-nod pocket]
+
+[Bridge]
+[Drums drop, piano and violin]
+
+[Final Chorus]
+[Biggest dusty drums and strings]
+
+[Outro]
+[Strip away instruments]</pre>
+        <div class="copy-row">
+          <p class="label strong">Reuse — beat mikro seti</p>
+          <button class="copy" data-copy="reuse-beat">Kopyala</button>
+        </div>
+        <pre id="reuse-beat">A: darker, more nocturnal, heavier low end
+B: tighter dusty boom bap pocket, more head-nod snare
+C: more melancholic piano, less drums in the verses
+D: calmer intimate vocal, closer to the microphone
+E: more cinematic chorus, bigger strings, widest drums</pre>
+        <blockquote>İlk hedef nakarat. Verse kötü, kanca iyiyse o take omurgadır.</blockquote>
       </div>
     </section>
 
