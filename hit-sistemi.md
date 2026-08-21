@@ -260,7 +260,7 @@ E: sahne versiyonu — koro tekrarı ekle, köprüyü kısalt
 
 ---
 
-Örnek parça: [Okundu](sarkilar/okundu.md)
+Örnek parçalar: [Okundu](sarkilar/okundu.md) · [Yanım Boş](sarkilar/yanim-bos.md)
 
 Rol promptu (yapay zekâya yapıştır): [rol-prompt.md](rol-prompt.md)
 

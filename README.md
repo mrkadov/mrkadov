@@ -18,9 +18,12 @@ Melankolik rap. Cinematic boom bap.
 
 Rol promptu: [rol-prompt.md](rol-prompt.md)
 
-Örnek parça: [Okundu](sarkilar/okundu.md)
+Örnek parçalar:
 
-Suno Custom Mode: [Okundu — Style + Lyrics](sarkilar/okundu-suno.md)
+- [Okundu](sarkilar/okundu.md) — mesaj görüldü, cevap yok
+- [Yanım Boş](sarkilar/yanim-bos.md) — gece yol, sağ koltuk boş
+
+Suno Custom Mode: [Okundu](sarkilar/okundu-suno.md) · [Yanım Boş](sarkilar/yanim-bos-suno.md)
 
 Okuma sürümü: [hit.html](hit.html)
 
