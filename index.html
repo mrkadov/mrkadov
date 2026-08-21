@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suno’yu Profesyonel Kullanmak — 15 Prompt Hilesi ve KA-1 Workflow</title>
+  <meta name="description" content="Suno’yu tek promptluk bir piyango gibi değil, aşamalı bir prodüksiyon sistemi gibi kullan. 15 prompt hilesi ve KA-1 workflow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0a09;
+      --bg-2: #121110;
+      --bg-3: #1a1816;
+      --ink: #ece6dc;
+      --muted: #a79c8d;
+      --gold: #c4a574;
+      --gold-2: #e0c9a0;
+      --line: rgba(196, 165, 116, 0.18);
+      --danger: #c97b6a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(196, 165, 116, 0.08), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(80, 90, 120, 0.12), transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Outfit, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    a { color: var(--gold-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header.hero {
+      padding: 72px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 0.95;
+      margin: 0 0 22px;
+      letter-spacing: -0.03em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-2);
+    }
+
+    .lede {
+      max-width: 68ch;
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .principle {
+      display: grid;
+      gap: 10px;
+      padding: 20px 22px;
+      background: linear-gradient(180deg, rgba(196,165,116,0.08), rgba(196,165,116,0.03));
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+    }
+
+    .principle strong { color: var(--gold-2); font-weight: 500; }
+    .principle span {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    nav.toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 24px;
+      padding: 28px 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav.toc a { color: var(--ink); }
+    nav.toc b {
+      display: block;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ka1-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0 8px;
+    }
+
+    .ka1 {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+    }
+
+    .ka1 .letter {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 42px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .ka1 h3 {
+      margin: 8px 0 6px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .ka1 p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+
+    .section-kicker {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tip {
+      margin: 36px 0 0;
+      padding: 0 0 8px;
+    }
+
+    .tip-num {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+    }
+
+    .tip h3 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin: 6px 0 14px;
+    }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 16px; padding-left: 22px; color: var(--ink); }
+    li { margin: 0 0 6px; }
+    li::marker { color: var(--gold); }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 18px;
+    }
+
+    pre, .block {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--gold-2);
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+    }
+
+    .label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    .label.weak { color: var(--danger); }
+    .label.strong { color: var(--gold); }
+
+    .copy-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    button.copy {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    button.copy:hover { background: rgba(196,165,116,0.08); }
+
+    blockquote {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold);
+      background: rgba(196,165,116,0.05);
+      color: var(--gold-2);
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.35;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gold);
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    footer {
+      padding: 40px 0 64px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer strong { color: var(--ink); font-weight: 500; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(1120px, calc(100% - 28px)); }
+      .ka1-row, .pair, .grid-2 { grid-template-columns: 1fr; }
+      header.hero { padding-top: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">KADO · Prodüksiyon notları</p>
+      <h1>Suno’yu Profesyonel Kullanmak<br /><em>15 Prompt Hilesi ve KA-1 Workflow</em></h1>
+      <p class="lede">Bu rehberin amacı tek promptla şansını denemek değil; Suno’yu aşamalı bir prodüksiyon sistemi gibi kullanmak. Suno’da en büyük farkı genellikle promptun uzunluğu değil, bilgiyi doğru aşamalara bölmek yaratır.</p>
+      <div class="principle">
+        <span>Ana prensip</span>
+        <strong>Önce fikir ve kimlik → sonra düzenleme → sonra ses tasarımı → en son mix/master.</strong>
+      </div>
+      <div class="ka1-row">
+        <article class="ka1">
+          <div class="letter">K</div>
+          <h3>Kimlik</h3>
+          <p>Fikir, lane, 2–4 temel unsur, My Taste, Persona / Voice.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">A</div>
+          <h3>Aranjman</h3>
+          <p>Style hikâyesi, Lyrics mimarisi, enerji eğrisi, nefes alan söz.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">1</div>
+          <h3>Birinci kilit</h3>
+          <p>Nakaratı kilitle. Sonra Replace, Reuse, Stem Cover, mix.</p>
+        </article>
+      </div>
+      <nav class="toc">
+        <div>
+          <b>Hileler 1–5</b>
+          <a href="#h1">Hikâye</a> ·
+          <a href="#h2">2–4 unsur</a> ·
+          <a href="#h3">Pozitif tarif</a> ·
+          <a href="#h4">Style / Lyrics</a> ·
+          <a href="#h5">Nefes</a>
+        </div>
+        <div>
+          <b>Hileler 6–10</b>
+          <a href="#h6">Nakarat</a> ·
+          <a href="#h7">Enerji eğrisi</a> ·
+          <a href="#h8">Başa koy</a> ·
+          <a href="#h9">Slider</a> ·
+          <a href="#h10">Reuse</a>
+        </div>
+        <div>
+          <b>Hileler 11–15</b>
+          <a href="#h11">Replace</a> ·
+          <a href="#h12">Stem Cover</a> ·
+          <a href="#h13">Parçalar</a> ·
+          <a href="#h14">My Taste</a> ·
+          <a href="#h15">Kimlik kilidi</a>
+        </div>
+        <div>
+          <b>Sistem</b>
+          <a href="#ka1">KA-1 Workflow</a> ·
+          <a href="#lab">Laboratuvar</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <p class="section-kicker">Bölüm 01</p>
+        <h2>15 Prompt Hilesi</h2>
+        <p class="lede">Zayıf kullanıcı etiket yığar. Güçlü kullanıcı bilgiyi sahneye böler.</p>
+
+        <article class="tip" id="h1">
+          <div class="tip-num">01</div>
+          <h3>“Etiket yığını” yerine müzikal hikâye yaz</h3>
+          <div class="pair">
+            <div>
+              <p class="label weak">Zayıf prompt</p>
+              <pre>dark rap, emotional, violin, piano, 90 bpm, sad</pre>
+            </div>
+            <div>
+              <p class="label strong">Daha güçlü yaklaşım</p>
+              <pre>Cinematic emotional hip-hop at 90 BPM. Begin with lonely piano and distant atmospheric violin. Gradually introduce deep warm bass and restrained boom bap drums. Keep the verses intimate and spacious, then expand into a powerful memorable chorus with wider drums and emotional strings. Dark, nocturnal, melancholic, cinematic, professional arrangement.</pre>
+            </div>
+          </div>
+          <p>Suno’nun detaylı ve daha doğal stil açıklamalarını anlayabilen model yapısından yararlanmış olursun.</p>
+          <p><strong>Prompt formülün:</strong> Genre + BPM + başlangıç + enerji gelişimi + enstrümanlar + vokal + mix karakteri</p>
+        </article>
+
+        <article class="tip" id="h2">
+          <div class="tip-num">02</div>
+          <h3>Aynı promptta 20 enstrüman isteme</h3>
+          <p>Suno’ya <em>piano, violin, clarinet, oud, guitar, synth, flute, trumpet...</em> yazarsan istediğin şeylerin çoğunu görmezden gelebilir.</p>
+          <p>Bunun yerine <strong>ana enstrüman + destek enstrümanı + atmosfer</strong> mantığını kullan.</p>
+          <pre>Melancholic piano as the main melodic element, expressive solo violin as emotional support, subtle distant clarinet textures in the background.</pre>
+          <p><strong>Kural:</strong> Bir şarkının müzikal kimliğini 2–4 temel unsurla kur.</p>
+        </article>
+
+        <article class="tip" id="h3">
+          <div class="tip-num">03</div>
+          <h3>“Negative prompt” yerine pozitif yönlendirme kullan</h3>
+          <p>Suno’da çoğu zaman <em>no trap, no pop, no happy music, no EDM</em> yazmak yerine şunu yap:</p>
+          <pre>Strictly organic 90s-inspired boom bap drum programming with dusty samples, restrained swing, no modern hyperactive hi-hat patterns.</pre>
+          <p>Yani istemediğini söylemek yerine, istediğin sonucu teknik olarak tarif et.</p>
+        </article>
+
+        <article class="tip" id="h4">
+          <div class="tip-num">04</div>
+          <h3>Style ve Lyrics alanlarını farklı amaçla kullan</h3>
+          <p>Bu normal kullanıcıların en sık yaptığı hata.</p>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Style of Music</h3>
+              <ul>
+                <li>Genre</li>
+                <li>BPM</li>
+                <li>Enstrüman</li>
+                <li>Aranjman</li>
+                <li>Mix karakteri</li>
+                <li>Vokal tarzı</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Lyrics</h3>
+              <ul>
+                <li>Sözler</li>
+                <li>Bölüm yapısı</li>
+                <li>Performans yönlendirmeleri</li>
+                <li>Ad-lib</li>
+                <li>Atmosfer notları</li>
+              </ul>
+            </div>
+          </div>
+          <p>Suno, Lyrics alanındaki ek bağlam ve yönlendirmeleri de kullanabiliyor.</p>
+          <pre>[Verse 1]
+[Male rap vocal, intimate and close to the microphone]
+...
+
+[Pre-Chorus]
+[The drums briefly disappear, tension increases]
+...
+
+[Chorus]
+[More emotional, wider vocal performance]
+...</pre>
+        </article>
+
+        <article class="tip" id="h5">
+          <div class="tip-num">05</div>
+          <h3>Sözlerde “nefes alan boşluklar” oluştur</h3>
+          <p>Özellikle Türkçe rapte her satırı kelimeyle doldurma.</p>
+          <div class="pair">
+            <div>
+              <p class="label weak">Zayıf</p>
+              <pre>Kafamın içinde bin tane düşünce dolaşıyor
+Her gece geçmişim önümde tekrar canlanıyor</pre>
+            </div>
+            <div>
+              <p class="label strong">Daha performatif</p>
+              <pre>Kafamda bin düşünce...
+Her biri farklı bir yara
+
+Her gece geçmişim...
+Geliyor kapıma</pre>
+            </div>
+          </div>
+          <p>Bu yaklaşım Suno’ya yorumlayacak alan bırakır.</p>
+        </article>
+
+        <article class="tip" id="h6">
+          <div class="tip-num">06</div>
+          <h3>Nakaratı ilk üretimde değil, ayrı optimize et</h3>
+          <p>Profesyonel workflow:</p>
+          <ol>
+            <li>Verse + chorus içeren demo üret.</li>
+            <li>En iyi nakarat melodisini bul.</li>
+            <li>O nakaratı temel kimlik haline getir.</li>
+            <li>Kalan bölümleri sonra düzenle.</li>
+          </ol>
+          <p>Bir şarkının ticari gücünün önemli kısmı nakarattadır. Bu nedenle 10 kötü verse üretmek yerine en iyi nakaratı 10 farklı varyasyonla aramak daha verimli olabilir.</p>
+        </article>
+
+        <article class="tip" id="h7">
+          <div class="tip-num">07</div>
+          <h3>“Enerji eğrisi” yaz</h3>
+          <p>Sadece “duygusal şarkı” yazmak yeterli değildir.</p>
+          <pre>Energy progression:
+0:00–0:15 minimal and atmospheric
+Verse: restrained and intimate
+Pre-chorus: increasing tension
+Chorus: emotional peak
+Verse 2: return to controlled energy
+Final chorus: biggest and widest section
+Outro: gradually strip away instruments</pre>
+          <p>v5, uzun yapılar ve bölümler arasındaki müzikal akışı daha iyi yönetmeye yönelik bir kompozisyon sistemi sunuyor.</p>
+        </article>
+
+        <article class="tip" id="h8">
+          <div class="tip-num">08</div>
+          <h3>Promptun en önemli kelimelerini başa koy</h3>
+          <p>Öncelik sıralaman şu olsun: tür → duygu → BPM → ana enstrüman → aranjman → vokal → mix.</p>
+          <pre>Emotional cinematic boom bap, 90 BPM, melancholic piano...</pre>
+          <p>Bunu şu şekilde bitirmekten daha kontrollüdür: <em>...and maybe somewhere there can also be an emotional cinematic boom bap feeling.</em></p>
+        </article>
+
+        <article class="tip" id="h9">
+          <div class="tip-num">09</div>
+          <h3>Weirdness ve Style Influence’ı bilinçli kullan</h3>
+          <p>Custom Mode’daki iki önemli slider:</p>
+          <ul>
+            <li><strong>Weirdness:</strong> Güvenli sonuçtan kaotik/deneysel sonuca</li>
+            <li><strong>Style Influence:</strong> Promptuna gevşek veya güçlü bağlılık</li>
+          </ul>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Ticari şarkı</h3>
+              <p>Weirdness: düşük–orta<br />Style Influence: yüksek</p>
+            </div>
+            <div class="card">
+              <h3>Yeni sound arayışı</h3>
+              <p>Weirdness: orta–yüksek<br />Style Influence: orta</p>
+            </div>
+          </div>
+          <p>Audio upload kullanıyorsan ayrıca Audio Influence da kontrol edilebilir.</p>
+          <p><strong>Hile:</strong> İyi bir sonuç alamıyorsan hemen promptu tamamen değiştirme. Önce slider kombinasyonlarını değiştir.</p>
+        </article>
+
+        <article class="tip" id="h10">
+          <div class="tip-num">10</div>
+          <h3>“Reuse Prompt” ile mikro varyasyon üret</h3>
+          <p>En iyi şarkını bulduğunda sıfırdan başlamamalısın. Aynı söz, aynı yapı, aynı temel sound korunurken yalnızca tek değişkeni değiştir:</p>
+          <ul>
+            <li>Versiyon A: Daha karanlık</li>
+            <li>Versiyon B: Daha melodik</li>
+            <li>Versiyon C: Daha güçlü bas</li>
+            <li>Versiyon D: Daha sakin vokal</li>
+            <li>Versiyon E: Daha sinematik nakarat</li>
+          </ul>
+          <p>Reuse Prompt, aynı başlangıç detaylarını yeniden kullanıp Lyrics, Style ve Title üzerinde değişiklik yapmaya imkân verir.</p>
+        </article>
+
+        <article class="tip" id="h11">
+          <div class="tip-num">11</div>
+          <h3>Beğenmediğin şarkıyı çöpe atma: Replace Section kullan</h3>
+          <pre>Verse mükemmel
+Nakarat kötü
+İkinci verse iyi
+Outro kötü</pre>
+          <p>Şarkıyı baştan üretmek yerine yalnızca sorunlu kısmı değiştir. Replace Section, orta bölümdeki sözleri veya müzikal kısmı değiştirmek için kullanılabilir ve yeni varyasyonlar oluşturur.</p>
+          <blockquote>Generate → Select → Fix → Select → Continue</blockquote>
+        </article>
+
+        <article class="tip" id="h12">
+          <div class="tip-num">12</div>
+          <h3>Bir soundu başka enstrümana dönüştür</h3>
+          <p>Suno Studio’daki Stem Cover ile mırıldandığın melodiyi kemana, parmak ritmini davula, basit vokal melodiyi gitar veya synth’e çevirebilirsin.</p>
+          <ul>
+            <li><strong>Cover:</strong> İlk/orijinal kaynak sese referans verir.</li>
+            <li><strong>Recreate:</strong> Mevcut seçili versiyondan yeni varyasyon üretir.</li>
+          </ul>
+          <p>Bu ikisini karıştırmamak, iteratif sound design sırasında ciddi avantaj sağlar.</p>
+        </article>
+
+        <article class="tip" id="h13">
+          <div class="tip-num">13</div>
+          <h3>“Mükemmel şarkı” yerine mükemmel parçalar üret</h3>
+          <ul>
+            <li>Davul iyi mi? → Davulu ayır.</li>
+            <li>Bas iyi mi? → Bası ayır.</li>
+            <li>Keman iyi mi? → Kemanı ayır.</li>
+            <li>Vokal iyi mi? → Vokali ayır.</li>
+          </ul>
+          <p>Sonra bunları Studio veya FL Studio’da yeniden birleştir. Advanced Stem Separation; Auto Split, Split from Mix ve Advanced Split gibi modlarla daha ayrıntılı ayırma imkânı sunuyor.</p>
+        </article>
+
+        <article class="tip" id="h14">
+          <div class="tip-num">14</div>
+          <h3>“My Taste” özelliğini prompt laboratuvarı olarak kullan</h3>
+          <p>My Taste sadece öneri sistemi değil; senin sound DNA’nı biriktiren bir prompt laboratuvarı.</p>
+          <p>Avatarına tıkla → <strong>My Taste</strong>. Profil alanı yaklaşık 2000 karaktere kadar düzenlenebilir. Style kutusundaki Magic Wand, bu profili kullanarak kişiselleştirilmiş stil taslağı üretir.</p>
+          <p>Pasif öğrenmeyi bekleme. Kimliğini elle yaz.</p>
+          <ol>
+            <li>2–4 temel unsurla lane’ini yaz.</li>
+            <li>Magic Wand ile taslak al.</li>
+            <li>Şarkıya özel son yüzde otuzu sen düzenle.</li>
+            <li>İşe yarayan cümleleri kütüphanene kaydet.</li>
+            <li>Farklı bir türe çıkıyorsan My Taste’i kapat. Aksi halde değnek seni sürekli kendi lane’ine çeker.</li>
+          </ol>
+          <div class="copy-row">
+            <p class="label strong">Örnek My Taste profili</p>
+            <button class="copy" data-copy="taste">Kopyala</button>
+          </div>
+          <pre id="taste">Emotional cinematic boom bap, 85–95 BPM. Melancholic piano as the main melodic identity, distant atmospheric violin as emotional support, dusty organic drums with restrained swing. Intimate male rap vocal, close to the microphone in verses, wider and more emotional in choruses. Dark, nocturnal, melancholic, spacious arrangement. Professional mix, warm low end, no hyperactive modern hi-hat patterns.</pre>
+          <p><strong>Kural:</strong> My Taste, promptun yerine geçmez. Sana %70’lik bir başlangıç verir. Kalan %30 hâlâ senin yönetmenliğin.</p>
+        </article>
+
+        <article class="tip" id="h15">
+          <div class="tip-num">15</div>
+          <h3>Kimliği kilitle: Voices, Persona ve Custom Model</h3>
+          <p>Her şarkıda sıfırdan “ben kimim?” diye sorma. Profesyonel katalog, rastgele güzel parçalar yığını değil; tanınabilir bir kimlik sistemidir.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Katman</th>
+                <th>Ne kilitler</th>
+                <th>Ne zaman</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>My Taste</td>
+                <td>Stil önerileri ve Magic Wand taslakları</td>
+                <td>Her gün, ücretsiz dahil</td>
+              </tr>
+              <tr>
+                <td>Persona / Style Persona</td>
+                <td>Beğendiğin bir şarkının özü ve vokal karakteri</td>
+                <td>Aynı lane’de yeni parça üretirken</td>
+              </tr>
+              <tr>
+                <td>Voices</td>
+                <td>Senin sesin / doğrulanmış vokal kimliğin</td>
+                <td>Vokal tutarlılığı istediğinde</td>
+              </tr>
+              <tr>
+                <td>Custom Model</td>
+                <td>Katalog sound’un (mix, aranjman, tını)</td>
+                <td>Pro/Premier; en az 6 kendi parçan</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>Hile:</strong> Önce 8–12 şarkılık dar bir lane üret. İşe yarayan 1 Persona + 1 Custom Model yeter. Üç ayrı kimliği aynı anda eğitmek, sound’u bulanıklaştırır.</p>
+          <p>v5.5’in asıl gücü tek özellik değil; Voices + Custom Model + My Taste’i aynı kimliğe bağlamaktır.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ka1">
+      <div class="wrap">
+        <p class="section-kicker">Bölüm 02</p>
+        <h2>KA-1 Workflow</h2>
+        <p class="lede">Tek oturumda şarkı “ummak” yerine, her oturumu bir aşamaya bağla. Promptu değiştirmeden önce aşamayı bitir.</p>
+
+        <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;margin:28px 0 10px;">Aşama K — Kimlik</h3>
+        <p>Bu aşamada Generate’e basma.</p>
+        <ol>
+          <li>Şarkının tek cümlelik fikrini yaz.</li>
+          <li>Müzikal kimliği 2–4 unsurla kilitle.</li>
+          <li>Vokal karakterini tek cümlede sabitle.</li>
+          <li>My Taste profilinin bu parçayla uyumlu olup olmadığına bak. Değilse kapat veya güncelle.</li>
+        </ol>
+        <div class="copy-row">
+          <p class="label strong">Kimlik kartı</p>
+          <button class="copy" data-copy="idcard">Kopyala</button>
+        </div>
+        <pre id="idcard">Fikir: Gece yarısı, kapıya gelen geçmiş.
+Lane: cinematic emotional boom bap, 90 BPM.
+Ana unsur: melancholic piano.
+Destek: distant violin.
+Atmosfer: dusty restrained drums, warm bass.
+Vokal: intimate male rap, close mic, wider chorus.</pre>
+
+        <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;margin:28px 0 10px;">Aşama A — Aranjman</h3>
+        <p>Style ve Lyrics’i ayrı yaz. Style = tür + duygu + BPM + ana enstrüman + enerji gelişimi + vokal + mix. Lyrics = bölüm etiketleri + performans notları + nefes alan sözler + ad-lib.</p>
+        <div class="copy-row">
+          <p class="label strong">Style taslağı</p>
+          <button class="copy" data-copy="style">Kopyala</button>
+        </div>
+        <pre id="style">Emotional cinematic boom bap, 90 BPM, melancholic piano, distant atmospheric violin, dusty organic drums, intimate male rap vocal. Begin lonely and spacious, grow into a wide emotional chorus, then return to controlled energy. Dark, nocturnal, melancholic, professional arrangement, warm low end.</pre>
+        <div class="copy-row">
+          <p class="label strong">Lyrics iskeleti</p>
+          <button class="copy" data-copy="lyrics">Kopyala</button>
+        </div>
+        <pre id="lyrics">[Intro]
+[Sparse piano, distant violin, no drums yet]
+
+[Verse 1]
+[Male rap vocal, intimate and close to the microphone]
+...
+
+[Pre-Chorus]
+[The drums briefly disappear, tension increases]
+...
+
+[Chorus]
+[More emotional, wider vocal performance, bigger drums and strings]
+...
+
+[Verse 2]
+[Return to restrained energy, closer vocal]
+...
+
+[Final Chorus]
+[Biggest and widest section]
+...
+
+[Outro]
+[Gradually strip away instruments]</pre>
+
+        <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;margin:28px 0 10px;">Aşama 1 — Birinci kilit</h3>
+        <p>Şimdi üret. Ama hâlâ “mükemmel şarkı” arama. Nakaratı ara.</p>
+        <ol>
+          <li>Verse + chorus içeren 4–8 demo al.</li>
+          <li>En iyi nakarat melodisini seç. Verse kötü olsa bile nakarat iyiyse o take omurgadır.</li>
+          <li>Weirdness düşük–orta, Style Influence yüksek ile aynı promptu bir kez daha dene. Sonuç kötüyse önce slider’ı, sonra tek değişkeni değiştir.</li>
+          <li>Kazanan nakaratı kimlik haline getir. Bundan sonra her müdahale bu kancayı korumak içindir.</li>
+        </ol>
+
+        <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;margin:28px 0 10px;">Cerrahi iterasyon</h3>
+        <p>Nakarat kilitlendikten sonra şarkıyı çöpe atma.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Sorun</th>
+              <th>Araç</th>
+              <th>Kural</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tek bölüm kötü</td>
+              <td>Replace Section</td>
+              <td>Yalnızca o bölümü değiştir</td>
+            </tr>
+            <tr>
+              <td>Sound doğru, tek katman eksik</td>
+              <td>Reuse Prompt</td>
+              <td>Tek değişken: daha karanlık / daha bas / daha sakin vokal</td>
+            </tr>
+            <tr>
+              <td>Melodi doğru, tını yanlış</td>
+              <td>Stem Cover</td>
+              <td>Cover = orijinal kaynak; Recreate = mevcut versiyon</td>
+            </tr>
+            <tr>
+              <td>Parça iyi, şarkı ortalama</td>
+              <td>Stem Separation</td>
+              <td>Davul / bas / keman / vokal ayır, Studio veya FL’de birleştir</td>
+            </tr>
+            <tr>
+              <td>Katalog dağılmaya başladı</td>
+              <td>Persona + Voices + Custom Model</td>
+              <td>Yeni şarkıyı kimlik sistemine bağla</td>
+            </tr>
+          </tbody>
+        </table>
+        <blockquote>Generate → Select → Fix → Select → Continue</blockquote>
+        <p>Mix ve master en son gelir. Önce fikir, sonra düzen, sonra ses, en son parlaklık.</p>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="wrap">
+        <p class="section-kicker">Bölüm 03</p>
+        <h2>Laboratuvar</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Ticari şarkı slider’ı</h3>
+            <p>Weirdness: düşük–orta<br />Style Influence: yüksek</p>
+          </div>
+          <div class="card">
+            <h3>Arama slider’ı</h3>
+            <p>Weirdness: orta–yüksek<br />Style Influence: orta</p>
+          </div>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Reuse Prompt mikro seti — aynı söz, aynı yapı, tek satır değişir</p>
+          <button class="copy" data-copy="micro">Kopyala</button>
+        </div>
+        <pre id="micro">A: darker, more nocturnal, heavier low end
+B: more melodic piano, wider emotional chorus
+C: stronger warm bass, tighter boom bap pocket
+D: calmer, more intimate vocal, closer to the microphone
+E: more cinematic chorus, bigger strings, widest drums</pre>
+
+        <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;font-weight:400;margin:28px 0 10px;">Oturum kontrol listesi</h3>
+        <ul class="checklist">
+          <li>Tek cümlelik fikir yazıldı</li>
+          <li>2–4 temel unsur kilitlendi</li>
+          <li>Style hikâye gibi yazıldı, etiket yığını değil</li>
+          <li>Lyrics’te bölüm + performans + nefes boşluğu var</li>
+          <li>Enerji eğrisi Style veya Lyrics’te duruyor</li>
+          <li>En önemli kelimeler Style’ın başında</li>
+          <li>İlk hedef nakarat; verse sonraya bırakıldı</li>
+          <li>Kötü sonuçta önce slider, sonra tek değişken</li>
+          <li>Sorunlu bölüm Replace Section ile alındı</li>
+          <li>İyi parçalar stem olarak ayrıldı</li>
+          <li>Beğenilen take Persona / Voice / Custom Model’e bağlandı</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Tek prompt bir piyangodur. KA-1 bir sistemdir.</strong></p>
+      <p>Önce kimlik. Sonra aranjman. Sonra nakarat kilidi. Sonra cerrahi. Mix en son.</p>
+      <p><a href="./suno-ka1-workflow.md">Markdown sürümü</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("button.copy").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-copy");
+        const text = document.getElementById(id).innerText;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = "Kopyalandı";
+          setTimeout(() => { btn.textContent = "Kopyala"; }, 1400);
+        } catch {
+          btn.textContent = "Seçip kopyala";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
