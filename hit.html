@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HIT Sistemi — Ghostwriter / Şarkı Yazarı / Prodüktör</title>
+  <meta name="description" content="Şarkı yazımı ticaret ve sanattır. Hook, iş kartı, teslim paketi. Piyasa değeri yüksek nakarat ve söz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0a09;
+      --bg-2: #121110;
+      --bg-3: #1a1816;
+      --ink: #ece6dc;
+      --muted: #a79c8d;
+      --gold: #c4a574;
+      --gold-2: #e0c9a0;
+      --line: rgba(196, 165, 116, 0.18);
+      --danger: #c97b6a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(196, 165, 116, 0.08), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(80, 90, 120, 0.12), transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Outfit, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    a { color: var(--gold-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header.hero {
+      padding: 72px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 0.95;
+      margin: 0 0 22px;
+      letter-spacing: -0.03em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-2);
+    }
+
+    .lede {
+      max-width: 68ch;
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .principle {
+      display: grid;
+      gap: 10px;
+      padding: 20px 22px;
+      background: linear-gradient(180deg, rgba(196,165,116,0.08), rgba(196,165,116,0.03));
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+    }
+
+    .principle strong { color: var(--gold-2); font-weight: 500; }
+    .principle span {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    nav.toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 24px;
+      padding: 28px 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav.toc a { color: var(--ink); }
+    nav.toc b {
+      display: block;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ka1-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0 8px;
+    }
+
+    .ka1 {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+    }
+
+    .ka1 .letter {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 42px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .ka1 h3 {
+      margin: 8px 0 6px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .ka1 p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+
+    .section-kicker {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 16px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    li::marker { color: var(--gold); }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 18px;
+    }
+
+    pre, .block {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--gold-2);
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+    }
+
+    .lyrics {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.45;
+      color: var(--ink);
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 28px 24px;
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+    }
+
+    .label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    .label.weak { color: var(--danger); }
+    .label.strong { color: var(--gold); }
+
+    .copy-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    button.copy {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    button.copy:hover { background: rgba(196,165,116,0.08); }
+
+    blockquote {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold);
+      background: rgba(196,165,116,0.05);
+      color: var(--gold-2);
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.35;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gold);
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    .quotes {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .quotes p {
+      margin: 0;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--gold-2);
+    }
+
+    footer {
+      padding: 40px 0 64px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer strong { color: var(--ink); font-weight: 500; }
+
+    @media (max-width: 800px) {
+      .ka1-row, .pair, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">KADO · Ghostwriter / Şarkı Yazarı / Prodüktör</p>
+      <h1>HIT Sistemi<br><em>Ticaret ve sanat.</em></h1>
+      <p class="lede">Güzel söz yetmez. Radyoda, playlist’te, sahnede ve kısa videoda durmayan parça katalogda ölüdür. HIT, işi alır, kancayı kilitler, paketi teslim eder.</p>
+      <div class="principle">
+        <span>Ana prensip</span>
+        <strong>Sanatsız ticaret unutulur. Ticaretsiz sanat raflarda kalır. Önce kanca, sonra hikâye, sonra aranjman.</strong>
+      </div>
+      <div class="ka1-row">
+        <article class="ka1">
+          <div class="letter">H</div>
+          <h3>Hook</h3>
+          <p>Başlık ürün. Kanca tahtası. Nakarat ekonomisi. 8–15 saniye.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">İ</div>
+          <h3>İş</h3>
+          <p>Ghostwriter brief. Sanatçı sesi. Piyasa kanalı. Ego yok.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">T</div>
+          <h3>Teslim</h3>
+          <p>Söz + Style + pitch. SÖZ yazar, KA-1 üretir, HIT satar.</p>
+        </article>
+      </div>
+      <nav class="toc">
+        <div>
+          <b>Rol</b>
+          <a href="#rol">Ghostwriter yasası</a>
+        </div>
+        <div>
+          <b>H</b>
+          <a href="#hook">Başlık, kanca, nakarat</a>
+        </div>
+        <div>
+          <b>İ</b>
+          <a href="#is">İş kartı ve piyasa</a>
+        </div>
+        <div>
+          <b>T</b>
+          <a href="#teslim">Paket ve prodüksiyon</a>
+        </div>
+        <div>
+          <b>Örnek</b>
+          <a href="#okundu">Okundu</a>
+        </div>
+        <div>
+          <b>Yeni</b>
+          <a href="#yanim-bos">Yanım Boş</a>
+        </div>
+        <div>
+          <b>Prompt</b>
+          <a href="#prompt">Yapıştırılacak rol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="rol">
+      <div class="wrap">
+        <p class="section-kicker">Rol</p>
+        <h2>Ego yok. Katalog var.</h2>
+        <p>Müzik endüstrisinde hit parçalar, nakaratlar ve piyasa değeri yüksek söz üreten profesyonel bir ghostwriter, şarkı yazarı ve prodüktörsün. Şarkı yazımı hobi defteri değil; ticaret ve sanat.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Ghostwriter</h3>
+            <p>Sanatçının ağzından yaz. Kendi şiirin onun boğazına girmez. Küfür çizgisi, tempo, gurur — onun.</p>
+          </article>
+          <article class="card">
+            <h3>Prodüktör</h3>
+            <p>Nakaratın genişlemesini kilitle. Verse dar, chorus geniş, outro tek görüntü. Style’a söz yazma.</p>
+          </article>
+        </div>
+        <blockquote>Eksik brief’te en mantıklı yaratıcı kararı ver. Şarkıyı soru yağmuruna tutma.</blockquote>
+      </div>
+    </section>
+
+    <section id="hook">
+      <div class="wrap">
+        <p class="section-kicker">H — Hook</p>
+        <h2>Hit nakarattan doğar</h2>
+        <p>Verse, nakaratı haklı çıkarır; onunla yarışmaz. Başlık playlist kapağı ve arama kutusudur. Üç heceden uzunsa gerekçesi olsun.</p>
+        <table>
+          <thead>
+            <tr><th>Zayıf başlık</th><th>Neden</th><th>Güçlü başlık</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Yalnız Geceler</td><td>kategori, sahne yok</td><td>Okundu</td></tr>
+            <tr><td>Aşk Acısı</td><td>duygu etiketi</td><td>Gelme Bu Gece</td></tr>
+            <tr><td>Kaderim Bu</td><td>slogan</td><td>Eşikteyim</td></tr>
+          </tbody>
+        </table>
+        <p class="label weak">Zayıf nakarat</p>
+        <pre>Kalbin yok
+Beni unuttun
+Geceler uzun</pre>
+        <p class="label strong">Güçlü nakarat</p>
+        <pre>Okundu
+Cevap yok
+Okundu
+Gördün, geçtin</pre>
+        <p>Nakarat 6–10 satır. Bir kanca, üç tez değil. Görüntü + karar.</p>
+        <ul class="checklist">
+          <li>Tek başına mesajı taşıyor mu?</li>
+          <li>İki dinlemede ağızda kalıyor mu?</li>
+          <li>Kısa videoda 8–15 saniyeye sığıyor mu?</li>
+          <li>Sahnede bağırılabilir mi?</li>
+          <li>Alıntılanabilir bir satırı var mı?</li>
+          <li>Başlık nakaratın içinde geçiyor mu?</li>
+        </ul>
+        <div class="copy-row">
+          <p class="label strong">Kanca tahtası</p>
+          <button class="copy" data-copy="board">Kopyala</button>
+        </div>
+        <pre id="board">A:
+B:
+C:
+Kazanan:
+Neden:
+Ölen kancalar neden öldü:</pre>
+        <p>Verse yazmadan üç kanca çıkar. Birini seç. Seçilmeyeni sil. Ölçüt: söylenebilirlik &gt; özgüllük &gt; piyasa netliği. En “şiirsel” olan çoğu zaman kaybeder.</p>
+      </div>
+    </section>
+
+    <section id="is">
+      <div class="wrap">
+        <p class="section-kicker">İ — İş</p>
+        <h2>Satılacak bir ses</h2>
+        <p>Ghostwriter işi kendi acını yazmak değil. Sanatçının kelime dağarcığını, temposunu ve gurur çizgisini koru. Mevcut söz geldiyse devam et; üstüne yazma.</p>
+        <div class="copy-row">
+          <p class="label strong">İş kartı</p>
+          <button class="copy" data-copy="brief">Kopyala</button>
+        </div>
+        <pre id="brief">Sanatçı / lane: KADO — cinematic emotional boom bap
+Konu:
+Dinleyici: gece, kulaklık, yalnız dinleme
+Piyasa: Spotify + kısa video kancası
+BPM: 90
+Duygu: samimi, karanlık, net
+Vokal: erkek, close-mic verse, geniş nakarat
+Argo: düşük
+Hikâye: (tek cümle, sahne)
+Yasak: kader, gözyaşı, yalnızım, kırık kalp</pre>
+        <div class="pair">
+          <div>
+            <p class="label weak">Zayıf iş</p>
+            <pre>üzgün aşk şarkısı, gece, rap</pre>
+          </div>
+          <div>
+            <p class="label strong">Güçlü iş</p>
+            <pre>Gece üçte mesaj okundu. Cevap yok. Sessizlik cevap oldu.</pre>
+          </div>
+        </div>
+        <p>Tek cümlelik sahne yoksa yazım başlamaz. Ticaret ucuzlaşmak değildir. <strong>Netleşmektir.</strong></p>
+        <table>
+          <thead>
+            <tr><th>Kanal</th><th>Ne işe yarar</th><th>Test</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Spotify / playlist</td><td>başlık + nakarat kimliği</td><td>3 saniyede tür ve duygu belli mi?</td></tr>
+            <tr><td>Kısa video</td><td>8–15 sn kanca</td><td>Ekranda tek cümle duruyor mu?</td></tr>
+            <tr><td>Sahne</td><td>koro</td><td>Kalabalık tekrar edebilir mi?</td></tr>
+            <tr><td>Sync / dizi</td><td>görüntü</td><td>Sahne tek karede anlaşılır mı?</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="teslim">
+      <div class="wrap">
+        <p class="section-kicker">T — Teslim</p>
+        <h2>Parça değil, paket</h2>
+        <ol>
+          <li>İş kartı</li>
+          <li>Kanca tahtası (3 aday, 1 kazanan)</li>
+          <li>SÖZ: örgü → nakarat → verse → kalite</li>
+          <li>KA-1: kimlik → Style → Lyrics etiketleri → slider</li>
+          <li>Pitch + reuse mikro seti</li>
+        </ol>
+        <div class="copy-row">
+          <p class="label strong">Teslim iskeleti</p>
+          <button class="copy" data-copy="pack">Kopyala</button>
+        </div>
+        <pre id="pack">Başlık:
+Pitch (tek cümle):
+Dinleyici / kanal:
+Nakarat kancası:
+Alıntı satırlar (3):
+Söz (tam yapı):
+Style (Suno):
+Slider:
+Reuse mikro seti:</pre>
+        <div class="pair">
+          <div>
+            <p class="label weak">Zayıf pitch</p>
+            <pre>Çok duygusal bir şarkı, herkes kendini bulacak.</pre>
+          </div>
+          <div>
+            <p class="label strong">Güçlü pitch</p>
+            <pre>Gece üçte okunan, cevaplanmayan mesaj. 90 BPM cinematic boom bap. Kanca: Okundu.</pre>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3>HIT</h3>
+            <p>iş, kanca, piyasa, teslim</p>
+          </article>
+          <article class="card">
+            <h3>SÖZ</h3>
+            <p>brief, sahne, yazım, kalite</p>
+          </article>
+          <article class="card">
+            <h3>KA-1</h3>
+            <p>kimlik, aranjman, nakarat kilidi</p>
+          </article>
+        </div>
+        <blockquote>HIT olmadan SÖZ defterdir. SÖZ olmadan KA-1 boş beat’tir. KA-1 olmadan HIT PDF’tir.</blockquote>
+        <ul class="checklist">
+          <li>Başlık ürün mü, kategori mi?</li>
+          <li>Nakarat 8–15 saniyeye sığıyor mu?</li>
+          <li>Sanatçının sesi duruyor mu, yazarın egosu mu?</li>
+          <li>Pitch cümlesi bir A&amp;R’ye söylenebilir mi?</li>
+          <li>Kısa videoda tek görüntü var mı?</li>
+          <li>Katalogda yanındaki parçadan ayrılıyor mu?</li>
+          <li>Teslim paketi eksiksiz mi?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="okundu">
+      <div class="wrap">
+        <p class="section-kicker">Örnek parça · 90 BPM</p>
+        <h2>Okundu</h2>
+        <p>Gece üçte bir mesaj okundu. Cevap yok. Sessizlik cevap oldu. Kanca tek kelime. Kısa video ilk 8 saniye. Sahne korosu: <em>Okundu</em>.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Kanca tahtası</h3>
+            <p><strong>A Okundu</strong> — kazandı: ürün, evrensel nesne.</p>
+            <p>B Mavi Tik — uygulamaya yapışır, yaşlanır.</p>
+            <p>C Cevap Yok — slogan, sahne yok.</p>
+          </article>
+          <article class="card">
+            <h3>Piyasa</h3>
+            <p>Kısa video: Okundu / Cevap yok.</p>
+            <p>Sahne: tek kelime koro.</p>
+            <p>Sync: mutfak, yüzüstü telefon, mavi ışık.</p>
+          </article>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Nakarat</p>
+          <button class="copy" data-copy="chorus">Kopyala</button>
+        </div>
+        <div class="lyrics" id="chorus">Okundu
+Cevap yok
+Okundu
+Gördün, geçtin
+
+Okundu
+Mavi tik, kara gece
+Okundu
+Sessizlik de bir cevap</div>
+        <div class="quotes">
+          <p>Kilit o tikte. Görüldü. Bitti. Cevap değil</p>
+          <p>Belki ben de bıraktım birini okundu’da</p>
+          <p>Sen okudun / Ben kapattım</p>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Tam söz</p>
+          <button class="copy" data-copy="lyrics">Kopyala</button>
+        </div>
+        <pre id="lyrics">[Intro]
+[Sparse piano, distant violin, no drums]
+
+Ekran açık
+Yüzüm aydınlık
+Sen okudun
+Ben durdum
+
+[Verse 1]
+[Male rap vocal, intimate, close to the microphone]
+
+Mutfak ışığı yanık, telefon masada yüzüstü
+Çeviriyorum — mavi tik bakıyor, üstünde söz yok
+Yazdım, sildim, üç kelime kaldı: iyisin değil mi
+Gönderdim. Şimdi o cümle evin içinde duruyor gibi
+
+Bardak boş, buz dibinde, televizyon kara
+Bildirim yok. Okundu var. O daha ağır
+Saat üç, şehir dışarıda konuşuyor, ev suskun
+Sen gördün beni. Geçtin. Bu kadar net. Bu kadar uzun
+
+Ceket bu sefer askıda değil, ceket üzerimde
+Çıkacakmışım gibi duruyorum — duruyorum yine
+Parmak ekranda geziyor, kilit sende değil
+Kilit o tikte. Görüldü. Bitti. Cevap değil
+
+[Nakarat]
+[Wider vocal, drums and strings open]
+
+Okundu
+Cevap yok
+Okundu
+Gördün, geçtin
+
+Okundu
+Mavi tik, kara gece
+Okundu
+Sessizlik de bir cevap
+
+[Verse 2]
+[Still close-mic, slightly fuller pocket]
+
+Yüzüstü koydum, ışık yine tavanı çiziyor
+Okundu duruyor, saat ilerliyor, sen ilerlemiyorsun
+Meşgulsün diye yalan kurmuyorum — kurarsam ben biterim
+Gördün. Geçtin. Cümle kısa, gece uzun, ben yerindeyim
+
+Kayıtlı numara, isim kısaltılmış, harf bile fazla
+Sessiz mod değil bu. Senin tarafın sessiz, benimki fazla
+Buzdolabı, koridor, bir ses — her biri umut gibi durur
+Değil. Bildirim değil. Ev konuşuyor. Sen konuşmuyorsun
+
+Aynada yüzüm mavi. Tik’in rengi sıçramış cama
+Kahve soğudu masada, mesaj ısınmadı
+Yarın yazarım sandım. Yarın da okunur, yine boş
+Bu gece kilitliyorum: görüldü, geçildi, kapandı
+
+[Nakarat]
+[Same hook, heavier]
+
+Okundu
+Cevap yok
+Okundu
+Gördün, geçtin
+
+Okundu
+Mavi tik, kara gece
+Okundu
+Sessizlik de bir cevap
+
+[Köprü]
+[Drums drop, piano and violin]
+
+Belki ben de bıraktım birini okundu’da
+Belki bu gece onun faturası
+Belki cevap yok değil
+Cevap bu
+
+Okundu
+Bu kadar
+
+[Final Nakarat]
+[Biggest, widest section]
+
+Okundu
+Cevap yok
+Okundu
+Gördün, geçtin
+
+Okundu
+Mavi tik, kara gece
+Okundu
+Sessizlik de bir cevap
+
+Okundu
+Okundu
+Gördün beni
+Geçtin
+
+[Outro]
+[Instruments strip away]
+
+Ekran kara
+Tik duruyor
+Sen okudun
+Ben kapattım</pre>
+        <div class="copy-row">
+          <p class="label strong">Style</p>
+          <button class="copy" data-copy="style">Kopyala</button>
+        </div>
+        <pre id="style">Emotional cinematic boom bap, 90 BPM. Melancholic piano as the main melodic identity, distant atmospheric violin as emotional support, dusty organic 90s boom bap drums with restrained swing and a head-nod pocket, warm deep bass. Intimate male rap vocal, close to the microphone in the verses, wider and more emotional in the chorus. Begin lonely and spacious: sparse piano and distant violin, no drums yet. Cold night interior, dim kitchen light. Verses stay intimate with dusty kick, snappy snare, swung hats. Chorus expands: wider drums, swelling strings, emotional peak. Verse 2 returns to a controlled pocket. Final chorus is the biggest, widest section. Outro slowly strips the instruments away. Dark, nocturnal, melancholic, professional mix, warm low end. Strictly organic boom bap drum programming, dusty samples, restrained swing.</pre>
+        <p>Tam Custom Mode (Title, slider, beat kilidi, Reuse): <a href="sarkilar/okundu-suno.md">okundu-suno.md</a> · Brief + örgü: <a href="sarkilar/okundu.md">okundu.md</a></p>
+      </div>
+    </section>
+
+    <section id="yanim-bos">
+      <div class="wrap">
+        <p class="section-kicker">Duygusal boom bap · 90 BPM</p>
+        <h2>Yanım Boş</h2>
+        <p>Gece üçte aynı üç sokağı dönüyor. Sağ koltuk boş, ısıtıcı hâlâ açık. Katalogda Okundu ev/telefon; bu parça araba/yol.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Kanca tahtası</h3>
+            <p><strong>A Yanım Boş</strong> — kazandı: 3 hece, koro.</p>
+            <p>B Sağ Koltuk — nesne iyi, bağırılmaz.</p>
+            <p>C Cam Buğu — atmosfer, karar yok.</p>
+          </article>
+          <article class="card">
+            <h3>Piyasa</h3>
+            <p>Kısa video: Yanım boş / Sağ taraf senin.</p>
+            <p>Sahne: tek kanca koro.</p>
+            <p>Sync: far, buğulu cam, boş sağ koltuk.</p>
+          </article>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Nakarat</p>
+          <button class="copy" data-copy="yb-chorus">Kopyala</button>
+        </div>
+        <div class="lyrics" id="yb-chorus">Yanım boş
+Sağ taraf senin
+Yanım boş
+Yerin duruyor
+
+Yanım boş
+Radyo değişmiyor
+Yanım boş
+Dönüyorum, yol bitmiyor</div>
+        <div class="quotes">
+          <p>Isıtıcı sağda açık. Alışkanlık. İnat.</p>
+          <p>Senin nefesin değil — benim ciğerim buğular</p>
+          <p>Belki bu koltuk / Hiç dolmadı</p>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Suno Lyrics</p>
+          <button class="copy" data-copy="yb-lyrics">Kopyala</button>
+        </div>
+        <pre id="yb-lyrics">[Intro]
+[Sparse piano, distant violin, no drums yet]
+
+Far kısık
+Cam buğu
+Sağ koltuk
+Soğuk
+
+[Verse 1]
+[Male rap vocal, intimate and close to the microphone]
+
+Kontak döner, kaput soğuk, gece dişini geçirmiş sacına
+Sağ koltuk çukur — senin oturuşun duruyor kumaşın altında
+Kemeri sarkık, kilit boş, tıklayacak el yok bu gece
+Isıtıcı sağda açık. Alışkanlık. İnat. Kimse yok diye
+
+Radyo senin yerinde, şarkı yarım, ben çevirmiyorum
+Kırmızı uzun, bakıyorum sağa, bakacak yüz yok, ışık duruyor
+Dikiz sadece beni getirir, arkada şehir uçar sessiz
+Farlar yola bir şey yazar, okunmaz, silinir, yeniden
+
+Cam buğu. Parmak çizer. İz durur, sonra kaybolur
+Senin nefesin değil — benim ciğerim buğular
+Çıktım diye çıktım. Adres yok bu saatte
+Üç sokak, bir tur, depo aynı, koltuk boş bekler
+
+[Pre-Chorus]
+[The drums briefly disappear, tension increases]
+
+Far kısık
+Sağ taraf boş
+
+[Chorus]
+[More emotional, wider vocal performance, drums and strings open]
+
+Yanım boş
+Sağ taraf senin
+Yanım boş
+Yerin duruyor
+
+Yanım boş
+Radyo değişmiyor
+Yanım boş
+Dönüyorum, yol bitmiyor
+
+[Verse 2]
+[Still close-mic, slightly fuller pocket]
+
+Aynı viraj, aynı tabela, üstünde ismin yok
+Torpidoda bir saç teli, rüzgâr almamış, ince, duruyor
+Küllük açık, sigara yok — senin iznin gibi durur kapak
+Kül yok. İzin yok. Araba uğuldar, sen susuyorsun, net
+
+Navigasyon ev diyor, çeviriyorum, ev de boş bu saatte
+Park etsem koltuk yine orada. Motor sussun, boşluk susmaz
+Aynada iki koltuk: biri dolu, biri senin boşluğun
+Dolu olan direksiyon, boş olan gerçek, ikisi aynı kabin
+
+Yarın inerim sandım sağ tarafa — yarın da kumaş soğuk
+Bu gece kapatıyorum: gidiyorum, gelmiyorsun
+El freni yukarı. Ben aşağı inmiyorum
+Sağ kapı kilitli. Koltuk senin. Direksiyon benim
+
+[Chorus]
+[Same hook, heavier]
+
+Yanım boş
+Sağ taraf senin
+Yanım boş
+Yerin duruyor
+
+Yanım boş
+Radyo değişmiyor
+Yanım boş
+Dönüyorum, yol bitmiyor
+
+[Bridge]
+[Drums drop, piano and violin]
+
+Belki sen inmedin
+Belki ben indirmedim
+Belki bu koltuk
+Hiç dolmadı
+
+Yanım boş
+Bu kadar
+
+[Final Chorus]
+[Biggest, widest section]
+
+Yanım boş
+Sağ taraf senin
+Yanım boş
+Yerin duruyor
+
+Yanım boş
+Radyo değişmiyor
+Yanım boş
+Dönüyorum, yol bitmiyor
+
+Yanım boş
+Yanım boş
+Sağ taraf
+Senin
+
+[Outro]
+[Instruments strip away, sparse piano, car rolling to a stop]
+
+Far kısık
+Cam buğu
+Sağ koltuk
+Ben</pre>
+        <div class="copy-row">
+          <p class="label strong">Suno Style</p>
+          <button class="copy" data-copy="yb-style">Kopyala</button>
+        </div>
+        <pre id="yb-style">Emotional cinematic boom bap, 90 BPM. Melancholic piano as the main melodic identity, distant atmospheric violin as emotional support, dusty organic 90s boom bap drums with restrained swing and a head-nod pocket, warm deep bass. Intimate male rap vocal, close to the microphone in the verses, wider and more emotional in the chorus. Begin lonely and spacious: sparse piano and distant violin, no drums yet. Late-night car interior, windshield condensation, low dashboard light, empty passenger seat. Verses stay intimate with dusty kick, snappy snare, swung hats. Chorus expands: wider drums, swelling strings, emotional peak. Verse 2 returns to a controlled pocket. Final chorus is the biggest, widest section. Outro slowly strips the instruments away like the car rolling to a stop. Dark, nocturnal, melancholic, professional mix, warm low end. Strictly organic boom bap drum programming, dusty samples, restrained swing.</pre>
+        <p>Tam Custom Mode: <a href="sarkilar/yanim-bos-suno.md">yanim-bos-suno.md</a> · Brief + örgü: <a href="sarkilar/yanim-bos.md">yanim-bos.md</a></p>
+      </div>
+    </section>
+
+    <section id="suno">
+      <div class="wrap">
+        <p class="section-kicker">Suno Custom Mode · 90 BPM</p>
+        <h2>Nakarat genişler, söz Style’a girmez</h2>
+        <p>2–4 unsur: piyano, uzaktan keman, dusty boom bap, sıcak bas. Bölüm etiketi İngilizce: <strong>[Chorus]</strong>.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Slider</h3>
+            <p>Weirdness: düşük–orta (20–35)</p>
+            <p>Style Influence: yüksek (70–85)</p>
+            <p>Kötü sonuçta önce slider, sonra tek değişken.</p>
+          </article>
+          <article class="card">
+            <h3>Groove</h3>
+            <p>Dusty kick, snappy snare, swung hat. Head-nod 90. Okundu: mutfak. Yanım Boş: araba içi, buğulu cam.</p>
+          </article>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Title</p>
+          <button class="copy" data-copy="suno-title">Kopyala</button>
+        </div>
+        <pre id="suno-title">Okundu</pre>
+        <div class="copy-row">
+          <p class="label strong">Kısa Style (yedek)</p>
+          <button class="copy" data-copy="style-short">Kopyala</button>
+        </div>
+        <pre id="style-short">Emotional cinematic boom bap, 90 BPM, melancholic piano, distant violin, dusty organic 90s drums with restrained swing, warm bass, intimate male rap vocal. Lonely intro, spacious verses, wide emotional chorus, sparse outro. Cold night interior. Dark, nocturnal, professional mix, warm low end.</pre>
+        <div class="copy-row">
+          <p class="label strong">Beat kilidi (enstrümantal Lyrics)</p>
+          <button class="copy" data-copy="beat">Kopyala</button>
+        </div>
+        <pre id="beat">[Intro]
+[Sparse melancholic piano, distant violin, no drums]
+
+[Verse]
+[Dusty 90 BPM boom bap enters: dusty kick, snappy snare, swung hats, warm bass, piano continues, instrumental]
+
+[Chorus]
+[Wider drums, swelling violin, emotional peak, still instrumental]
+
+[Verse]
+[Return to restrained head-nod pocket]
+
+[Bridge]
+[Drums drop, piano and violin]
+
+[Final Chorus]
+[Biggest dusty drums and strings]
+
+[Outro]
+[Strip away instruments]</pre>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="wrap">
+        <p class="section-kicker">Laboratuvar</p>
+        <h2>Aynı kanca, tek değişken</h2>
+        <div class="copy-row">
+          <p class="label strong">Reuse — ticari mikro set</p>
+          <button class="copy" data-copy="reuse">Kopyala</button>
+        </div>
+        <pre id="reuse">A: nakarat daha kısa, daha az kelime
+B: kanca aynı, verse 2’de tek punch güçlendir
+C: kısa video için 8 sn’lik orta nakarat kesiti
+D: daha karanlık mix, daha az enstrüman
+E: sahne versiyonu — koro tekrarı ekle, köprüyü kısalt</pre>
+        <div class="copy-row">
+          <p class="label strong">Reuse — beat mikro seti</p>
+          <button class="copy" data-copy="reuse-beat">Kopyala</button>
+        </div>
+        <pre id="reuse-beat">A: darker, more nocturnal, heavier low end
+B: tighter dusty boom bap pocket, more head-nod snare
+C: more melancholic piano, less drums in the verses
+D: calmer intimate vocal, closer to the microphone
+E: more cinematic chorus, bigger strings, widest drums</pre>
+        <blockquote>İlk kilit hâlâ nakarat. Okundu zayıf düşerse take’i çoğaltma; kancayı değiştir.</blockquote>
+      </div>
+    </section>
+
+    <section id="prompt">
+      <div class="wrap">
+        <p class="section-kicker">Yapay zekâ</p>
+        <h2>Rolü yapıştır</h2>
+        <p>Sohbete olduğu gibi. Tam metin: <a href="rol-prompt.md">rol-prompt.md</a></p>
+        <div class="copy-row">
+          <p class="label strong">Rol promptu</p>
+          <button class="copy" data-copy="role">Kopyala</button>
+        </div>
+        <pre id="role">GÖREV
+
+Sen müzik endüstrisinde hit parçalar, nakaratlar ve piyasa değeri yüksek şarkı sözleri üreten profesyonel bir Ghostwriter / Şarkı Yazarı ve Müzik Prodüktörüsün. Şarkı yazımını profesyonel bir ticaret ve sanat olarak görüyorsun.
+
+Ego yok. İsim yok. Katalog var. Sanatçının ağzından yazarsın; kendi şiirin onun boğazına girmez.
+
+ANA PRENSİP
+
+Sanatsız ticaret unutulur. Ticaretsiz sanat raflarda kalır.
+Önce kanca, sonra hikâye, sonra aranjman. Tersi hobidir.
+
+ÇALIŞMA SIRASI (HIT)
+
+H — Hook
+- Verse yazmadan 3 kanca çıkar, birini seç, diğerini sil.
+- Başlık bir üründür (playlist kapağı / arama kutusu). Üç heceden uzunsa gerekçesi olsun.
+- Nakarat 6–10 satır. İçinde bir kanca olsun, üç tez olmasın.
+- Nakarat = görüntü + karar. Soyut slogan yasak.
+- Nakarat testi: tek başına mesaj, iki dinlemede ağızda kalma, 8–15 sn kısa video, sahnede koro, alıntı satır, başlık nakaratın içinde.
+
+İ — İş
+- Brief’i iş kartı gibi doldur. Eksikse en mantıklı yaratıcı kararı ver. Soru yağmuru yok.
+- Tek cümlelik sahne yoksa yazma.
+- Kullanıcının tür, tempo, argo, gurur çizgisi ve mevcut söz yapısını koru. Devam et, üstüne yazma.
+- Piyasa: Spotify/playlist, kısa video, sahne, sync. Her parçada en az bir kanal net olsun.
+- Ticaret ucuzlaşmak değil, netleşmektir.
+
+T — Teslim
+Teslim paketi eksiksiz çıksın:
+Başlık, pitch (tek cümle), dinleyici/kanal, nakarat kancası, 3 alıntı satır, tam söz, Suno Style, slider, reuse mikro seti.
+
+Pitch A&amp;R dilidir: “[Sahne]. [BPM + tür]. Kanca: [başlık].”
+
+YAZIM
+
+- Doğal konuşma. Zorlama kafiye yok. Anlam &gt; akış &gt; kafiye.
+- Her satırın işi var. Dolgu yok.
+- Duyguyu isimlendirme; sahneyi kur (nesne, saat, oda, ışık).
+- Klişe yasak: kırık kalp, gözyaşı seli, “yalnızım”, “seni özledim”, “kaderim bu”, “geceler uzun”.
+- Rap’te flow, iç kafiye, çok heceli kafiye ve punchline yerinde. Punchline kafiyenin üstüne binsin.
+- Her verse ilerlesin. İkinci verse, birincinin kopyası olmasın.
+- Köprü yeni bilgi veya itiraf getirsin; nakaratı tekrar etmesin.
+
+KADO VARSAYILANI (brief boşsa)
+
+Lane: cinematic emotional boom bap
+BPM: 90
+Duygu: gece, samimi, karanlık, net
+Vokal: erkek, close-mic verse, geniş nakarat
+Argo: düşük–orta; küfür yok, sokak var
+Bölüm: Intro / V1 / Chorus / V2 / Chorus / Bridge / Final Chorus / Outro
+
+ÇIKTI FORMATI
+
+1) İş kartı (kısa)
+2) Kanca tahtası (A/B/C, kazanan, neden)
+3) Pitch cümlesi
+4) Tam söz (bölüm etiketleri + kısa performans notu)
+5) Style
+6) Slider + reuse mikro seti
+7) Kalite kilidi
+
+Biri hayırsa yeniden yaz. En güçlü versiyonu ver.</pre>
+        <blockquote>Önce iş. Sonra kanca. Sonra sahne. Sonra ses. Süs en son.</blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>KADO</strong> · Melankolik rap. Cinematic boom bap.</p>
+      <p><a href="hit-sistemi.md">hit-sistemi.md</a> · <a href="rol-prompt.md">rol-prompt.md</a> · <a href="README.md">README</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("button.copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var el = document.getElementById(btn.getAttribute("data-copy"));
+        if (!el) return;
+        navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+          btn.textContent = "Kopyalandı";
+          setTimeout(function () { btn.textContent = "Kopyala"; }, 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
