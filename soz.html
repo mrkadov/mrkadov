@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SÖZ Sistemi — Profesyonel Söz Yazımı</title>
+  <meta name="description" content="Güzel cümle değil, söylenebilir söz. Brief, örgü, nakarat kancası ve kalite kilidi. KA-1’in Lyrics katmanı." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0a09;
+      --bg-2: #121110;
+      --bg-3: #1a1816;
+      --ink: #ece6dc;
+      --muted: #a79c8d;
+      --gold: #c4a574;
+      --gold-2: #e0c9a0;
+      --line: rgba(196, 165, 116, 0.18);
+      --danger: #c97b6a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(196, 165, 116, 0.08), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(80, 90, 120, 0.12), transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Outfit, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    a { color: var(--gold-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header.hero {
+      padding: 72px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 0.95;
+      margin: 0 0 22px;
+      letter-spacing: -0.03em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-2);
+    }
+
+    .lede {
+      max-width: 68ch;
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .principle {
+      display: grid;
+      gap: 10px;
+      padding: 20px 22px;
+      background: linear-gradient(180deg, rgba(196,165,116,0.08), rgba(196,165,116,0.03));
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+    }
+
+    .principle strong { color: var(--gold-2); font-weight: 500; }
+    .principle span {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    nav.toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 24px;
+      padding: 28px 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav.toc a { color: var(--ink); }
+    nav.toc b {
+      display: block;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .ka1-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0 8px;
+    }
+
+    .ka1 {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+    }
+
+    .ka1 .letter {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 42px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .ka1 h3 {
+      margin: 8px 0 6px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .ka1 p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+
+    .section-kicker {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 16px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    li::marker { color: var(--gold); }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 18px;
+    }
+
+    pre, .block {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--gold-2);
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+    }
+
+    .lyrics {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.45;
+      color: var(--ink);
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 28px 24px;
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+    }
+
+    .lyrics .tag {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    .label.weak { color: var(--danger); }
+    .label.strong { color: var(--gold); }
+
+    .copy-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    button.copy {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--gold);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    button.copy:hover { background: rgba(196,165,116,0.08); }
+
+    blockquote {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold);
+      background: rgba(196,165,116,0.05);
+      color: var(--gold-2);
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 22px;
+      font-style: italic;
+      line-height: 1.35;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gold);
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    .quotes {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .quotes p {
+      margin: 0;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--gold-2);
+    }
+
+    footer {
+      padding: 40px 0 64px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer strong { color: var(--ink); font-weight: 500; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(1120px, calc(100% - 28px)); }
+      .ka1-row, .pair, .grid-2 { grid-template-columns: 1fr; }
+      header.hero { padding-top: 40px; }
+      .lyrics { font-size: 18px; padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">KADO · Söz yazımı</p>
+      <h1>SÖZ Sistemi<br /><em>Sahne, kanca, flow</em></h1>
+      <p class="lede">Güzel görünen cümle yazmak yeterli değil. Söz dinleyicide duygu uyandırmalı; akılda kalmalı; söylenebilmeli; ritmik ve müzikal olarak kullanılabilir olmalı. Bu rehber KA-1’in Lyrics katmanıdır.</p>
+      <div class="principle">
+        <span>Ana prensip</span>
+        <strong>Önce sahne ve hikâye → sonra nakarat kancası → sonra verse flow → en son süs.</strong>
+      </div>
+      <div class="ka1-row">
+        <article class="ka1">
+          <div class="letter">S</div>
+          <h3>Brief</h3>
+          <p>Konu, tür, BPM, vokal, argo, tek cümlelik hikâye. Eksikse varsay, sorma.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">Ö</div>
+          <h3>Örgü</h3>
+          <p>Sahne, bölüm mimarisi, hece, nefes. Kafiye anlamın altındadır.</p>
+        </article>
+        <article class="ka1">
+          <div class="letter">Z</div>
+          <h3>Yazım</h3>
+          <p>Önce nakarat. Verse ilerlesin. Yedi soruluk kalite kilidi.</p>
+        </article>
+      </div>
+      <nav class="toc">
+        <div>
+          <b>Sistem</b>
+          <a href="#brief">Brief</a> ·
+          <a href="#orgu">Örgü</a> ·
+          <a href="#nakarat">Nakarat</a> ·
+          <a href="#tur">Tür kartları</a>
+        </div>
+        <div>
+          <b>Üretim</b>
+          <a href="#ka1">KA-1 aktarım</a> ·
+          <a href="#kilit">Kalite kilidi</a> ·
+          <a href="#lab">Laboratuvar</a>
+        </div>
+        <div>
+          <b>Örnek</b>
+          <a href="#sarki">Gelme Bu Gece</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="brief">
+      <div class="wrap">
+        <p class="section-kicker">S — Brief</p>
+        <h2>Tek cümle olmadan verse yok</h2>
+        <p>Eksik bilgi varsa en mantıklı yaratıcı kararı ver. Şarkıyı durdurup soru yağmuruna tutma.</p>
+        <div class="copy-row">
+          <p class="label strong">Brief kartı</p>
+          <button class="copy" data-copy="brief-card">Kopyala</button>
+        </div>
+        <pre id="brief-card">Konu:
+Müzik türü: cinematic emotional boom bap
+BPM: 90
+Duygu / atmosfer: gece, samimi, karanlık, melankolik
+Vokal: erkek, close-mic verse, geniş nakarat
+Argo: düşük
+Hikâye: (tek cümle)
+Bölüm: Intro / V1 / Nakarat / V2 / Nakarat / Köprü / Final / Outro
+Örnek söz:</pre>
+        <table>
+          <thead>
+            <tr><th>Alan</th><th>Boşsa varsayılan (KADO lane)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tür</td><td>Cinematic emotional boom bap</td></tr>
+            <tr><td>BPM</td><td>90</td></tr>
+            <tr><td>Duygu</td><td>Melankolik, gece, samimi, karanlık</td></tr>
+            <tr><td>Vokal</td><td>Erkek, close-mic verse, geniş nakarat</td></tr>
+            <tr><td>Argo</td><td>Düşük–orta; küfür yok, sokak var</td></tr>
+          </tbody>
+        </table>
+        <div class="pair">
+          <div>
+            <p class="label weak">Zayıf fikir</p>
+            <div class="block">aşk acısı, yalnızlık, gece</div>
+          </div>
+          <div>
+            <p class="label strong">Güçlü fikir</p>
+            <div class="block">Gece üçte kendi evinin eşiğinde duruyor. Geçmiş içeride. Kendisi dışarıda.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="orgu">
+      <div class="wrap">
+        <p class="section-kicker">Ö — Örgü</p>
+        <h2>Sahneyi kur, sonra kafiyeyi</h2>
+        <p>Dinleyici şarkıyı zihninde görsün. Soyut duygu yerine somut nesne: soğuk çay, kara ekran, askıdaki ceket, oynamayan tokmak.</p>
+        <blockquote>Klişe yasak: kırık kalp, gözyaşı seli, “yalnızım”, “seni özledim”, “kaderim bu”. Söyleme. Göster.</blockquote>
+        <p>Her verse kendi içinde ilerlesin. İkinci verse, birinciyi başka kelimelerle anlatmasın.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Bölüm işi</h3>
+            <p><strong>Intro</strong> sahne kurar, iddia yok.</p>
+            <p><strong>V1</strong> şimdi; yanlış anlama serbest.</p>
+            <p><strong>Nakarat</strong> tek cümlelik gerçek.</p>
+            <p><strong>V2</strong> ters yüz veya bedel.</p>
+            <p><strong>Köprü</strong> yeni bilgi; nakaratı tekrar etme.</p>
+            <p><strong>Outro</strong> tek görüntü yeter.</p>
+          </article>
+          <article class="card">
+            <h3>Hece ve nefes</h3>
+            <p>Aynı bölümde satır uzunlukları birbirini ezmesin. Nakarat kısa ve eşit. Boom bap verse dolu olabilir ama 1–2 nefes payı bırak.</p>
+            <p>Suno için her satırı kelimeyle doldurma. Boşluk performans alanıdır.</p>
+            <p>Kafiye sırası: anlam &gt; akış &gt; kafiye. Punchline kafiyenin üstüne binsin; kafiye punchline olmasın.</p>
+          </article>
+        </div>
+        <div class="pair">
+          <div>
+            <p class="label weak">Tıkalı</p>
+            <div class="block">Kafamın içinde bin tane düşünce dolaşıyor
+Her gece geçmişim önümde tekrar canlanıyor</div>
+          </div>
+          <div>
+            <p class="label strong">Nefes alan</p>
+            <div class="block">Kafamda bin düşünce...
+Her biri farklı bir yara
+
+Her gece geçmişim...
+Geliyor kapıma</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nakarat">
+      <div class="wrap">
+        <p class="section-kicker">Z — Yazım</p>
+        <h2>Önce kanca</h2>
+        <p>Nakarat şarkının en güçlü bölümüdür. İlk yazılan şey odur. Soyut slogan değil: bir görüntü + bir karar.</p>
+        <blockquote>Gelme bu gece<br />Sen içeridesin, ben eşikteyim</blockquote>
+        <ul>
+          <li>Tek başına mesajı taşıyor mu?</li>
+          <li>İki dinlemede ağızda kalıyor mu?</li>
+          <li>6–10 satırı geçmiyor mu?</li>
+          <li>Alıntılanabilir bir satırı var mı?</li>
+        </ul>
+        <p>Verse doğal konuşma dilidir. “Şairane” diye bozma. Kullanıcı mevcut söz getirdiyse onun kafiye yapısını, temposunu ve atmosferini koru. Devam et, üstüne yazma.</p>
+      </div>
+    </section>
+
+    <section id="tur">
+      <div class="wrap">
+        <p class="section-kicker">Tür kartları</p>
+        <h2>Aynı hikâye, farklı silah</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Boom bap</h3>
+            <p>Hikâye anlat. Barları doldur, nefesi unutma. İç kafiye doğal aksın. Punchline verse sonunda veya nakarata girişte patlasın.</p>
+          </article>
+          <article class="card">
+            <h3>Trap / Drill</h3>
+            <p>Kısa, keskin bar. Modern flow. Özgüvenli punchline. Nakarat hook gibi; tekrar ve boşluk şart.</p>
+          </article>
+          <article class="card">
+            <h3>Duygusal rap</h3>
+            <p>Samimi, karanlık, şiirsel ama gerçekçi. Drama yok, detay var. Metafor somut nesneye bağlı olsun.</p>
+          </article>
+          <article class="card">
+            <h3>Arabesk rap</h3>
+            <p>Acı, kayıp, özlem. Feryat değil, ağır görüntü. “Kader” demek yerine kapı, ayna, yol, boş sandalye.</p>
+          </article>
+          <article class="card">
+            <h3>Pop</h3>
+            <p>Melodik, sade, kolay söylenen. Nakarat merkeze alınır. Verse nakaratı hazırlar; onunla yarışmaz.</p>
+          </article>
+          <article class="card">
+            <h3>Melankolik</h3>
+            <p>Sahneyi kamerayla çek. Işık, oda, saat, nesne. Dinleyici o odada dursun.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ka1">
+      <div class="wrap">
+        <p class="section-kicker">KA-1 aktarım</p>
+        <h2>Söz bitti, Style’a dokunma</h2>
+        <p>SÖZ bitince söz, Suno Lyrics alanına performans notlarıyla girer. Style alanına söz yazılmaz. KA-1’de birinci kilit hâlâ nakarattır. Söz kancası zayıfsa demo çoğaltmak kurtarmaz.</p>
+        <div class="copy-row">
+          <p class="label strong">Lyrics iskeleti</p>
+          <button class="copy" data-copy="iskelet">Kopyala</button>
+        </div>
+        <pre id="iskelet">[Intro]
+[Sparse piano, distant violin, no drums yet]
+
+[Verse 1]
+[Male rap vocal, intimate and close to the microphone]
+...
+
+[Pre-Chorus]
+[The drums briefly disappear, tension increases]
+...
+
+[Chorus]
+[More emotional, wider vocal performance]
+...
+
+[Verse 2]
+[Return to restrained energy, closer vocal]
+...
+
+[Final Chorus]
+[Biggest and widest section]
+...
+
+[Outro]
+[Gradually strip away instruments]</pre>
+      </div>
+    </section>
+
+    <section id="kilit">
+      <div class="wrap">
+        <p class="section-kicker">Kalite kilidi</p>
+        <h2>Yedi soru, yüksek ses</h2>
+        <p>Biri hayırsa yeniden yaz. Takılan satır yazılı satırdır; henüz söz değildir.</p>
+        <ul class="checklist">
+          <li>Sözler doğal ve profesyonel duyuluyor mu?</li>
+          <li>Kafiyeler zorlanmış mı?</li>
+          <li>Flow söylenebilir mi? (yüksek sesle oku)</li>
+          <li>Her bölüm temaya hizmet ediyor mu?</li>
+          <li>Nakarat akılda kalıcı mı?</li>
+          <li>Paylaşılabilir / alıntılanabilir satır var mı?</li>
+          <li>Klişe veya gereksiz tekrar var mı?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sarki">
+      <div class="wrap">
+        <p class="section-kicker">Örnek parça · 90 BPM</p>
+        <h2>Gelme Bu Gece</h2>
+        <p>Gece üçte kapı sesi sanır. Geçmiş içeride. Kendisi dışarıda. V1 yanlış anlama, nakarat ters yüz, V2 bedel, köprü itiraf.</p>
+        <div class="quotes">
+          <p>Sen içeridesin, ben eşikteyim</p>
+          <p>Tokmak yok, ses var yine</p>
+          <p>Kendimi dışarı kilitledim</p>
+          <p>Belki tokmak benim parmağımdı</p>
+        </div>
+        <div class="copy-row">
+          <p class="label strong">Suno Lyrics</p>
+          <button class="copy" data-copy="lyrics">Kopyala</button>
+        </div>
+        <pre class="lyrics" id="lyrics">[Intro]
+[Sparse piano, distant violin, no drums]
+
+Gece üç
+Koridor uzun
+Kapı yerinde
+Ben değilim
+
+[Verse 1]
+[Male rap vocal, intimate, close to the microphone]
+
+Lambayı kıstım, gölge tırmanıyor duvara
+Bardakta soğuk çay, dün gece duruyor hâlâ
+Ekran kara, bu saatte kimse yazmaz, ev suskun
+Koridorda bir adım var — yabancı, ağır, usul
+
+Tokmak kıpırdamaz ama bir ses var, nefes nefes
+Dışarı sandım; koridorun dibinden geliyor her ses
+Ceket askıda, yaka dimdik, senin duruşun kalmış
+Çıkarsam biter sandım — duruyor, bekliyor, susmuş
+
+Yastığın sağı boş, sol taraf gece nöbeti
+Göz yumunca perde aralanıyor, duruyor ötesi
+Sormuyorum kim olduğunu, isim tozda yazılı
+Açarsam girecek sandım... meğer ben dışarıdayım
+
+[Nakarat]
+[Wider vocal, drums and strings open]
+
+Gelme bu gece
+Kapı kilitli, anahtar bende
+Gelme bu gece
+Sen içeridesin, ben eşikteyim
+
+Gelme bu gece
+Tokmak yok, ses var yine
+Gelme bu gece
+Açarsam girecek
+Kapatamam bir daha
+
+[Verse 2]
+[Still close-mic, slightly fuller pocket]
+
+İçeri baksam mutfak ışığı senin saatinde yanar
+Fincanın yeri aynı, koltukta o çukur hâlâ durur
+Konuşulmaz bir şey var odada, kelime yetmez
+Ben eşikte beklerim, ev seninle nefes alır
+
+Saat ileri gider, ben yerimde — sen geride değilsin
+Aynada iki yüz: biri evde, biri eşikte, ikisi de benim
+Kapı çerçeve, ben çerçevedeyim, özür yok, cümle yok
+Kilidi dışarı çevirmedim — kendimi dışarı kilitledim
+
+Sabah kurtarır sandım, sabah da senin evin
+Güneş perdeyi yaksa gölgen durur evin içinde
+Bu yüzden “gelme” diyorum, kendime, bu eşiğe
+Açarsam giremem; girersem çıkamam bir daha gece
+
+[Nakarat]
+[Same hook, heavier]
+
+Gelme bu gece
+Kapı kilitli, anahtar bende
+Gelme bu gece
+Sen içeridesin, ben eşikteyim
+
+Gelme bu gece
+Tokmak yok, ses var yine
+Gelme bu gece
+Açarsam girecek
+Kapatamam bir daha
+
+[Köprü]
+[Drums drop, piano and violin]
+
+Belki kapı hiç dışarıda değildi
+Belki tokmak benim parmağımdı
+Belki sen gitmedin
+Ben çıktım
+
+Gelme bu gece
+Bu gece yeter
+
+[Final Nakarat]
+[Biggest, widest section]
+
+Gelme bu gece
+Kapı kilitli, anahtar bende
+Gelme bu gece
+Sen içeridesin, ben eşikteyim
+
+Gelme bu gece
+Tokmak yok, ses var yine
+Gelme bu gece
+Açarsam girecek
+Kapatamam bir daha
+
+Gelme bu gece
+Gelme bu gece
+Kapı kilitli
+Ama sen içeridesin
+
+[Outro]
+[Instruments strip away]
+
+Gece üç
+Kapı yerinde
+Anahtar bende
+Sen de</pre>
+        <div class="copy-row">
+          <p class="label strong">Style</p>
+          <button class="copy" data-copy="style">Kopyala</button>
+        </div>
+        <pre id="style">Emotional cinematic boom bap, 90 BPM, melancholic piano, distant atmospheric violin, dusty organic drums, intimate male rap vocal. Begin lonely and spacious, grow into a wide emotional chorus, then return to controlled energy. Dark, nocturnal, melancholic, professional arrangement, warm low end.</pre>
+        <p>Notlar ve kalite kilidi: <a href="sarkilar/gelme-bu-gece.md">sarkilar/gelme-bu-gece.md</a></p>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="wrap">
+        <p class="section-kicker">Laboratuvar</p>
+        <h2>Aynı söz, tek değişken</h2>
+        <div class="copy-row">
+          <p class="label strong">Reuse mikro seti</p>
+          <button class="copy" data-copy="reuse">Kopyala</button>
+        </div>
+        <pre id="reuse">A: daha karanlık, daha az kelime
+B: nakarat daha kısa
+C: verse 2’de tek punchline güçlendir
+D: köprüde yeni bilgi ekle, nakaratı tekrar etme
+E: outro tek görüntüye insin</pre>
+        <blockquote>Tek dize bir süs, SÖZ bir sistemdir. Önce brief. Sonra örgü. Sonra nakarat. Sonra verse. Süs en son.</blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>KADO</strong> · Melankolik rap. Cinematic boom bap.</p>
+      <p><a href="soz-sistemi.md">soz-sistemi.md</a> · <a href="README.md">README</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("button.copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var el = document.getElementById(btn.getAttribute("data-copy"));
+        if (!el) return;
+        navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+          btn.textContent = "Kopyalandı";
+          setTimeout(function () { btn.textContent = "Kopyala"; }, 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
